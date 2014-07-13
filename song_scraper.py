@@ -9,10 +9,11 @@ def get_songs(page_number):
     html = urlopen(BASE_URL + page_number).read()
     soup = BeautifulSoup(html, "lxml")
     songs = soup.findAll('h1')
-    print songs
-    for i in range(len(songs)):
-        print songs[i]
-        return songs[i]
+    list_section = []
+    for i in range(1,11):
+        songz = songs[i].encode_contents().strip()
+        list_section.append(songz)
+    return list_section
 
 if __name__ == '__main__':
     data = [] # a list to store the songs

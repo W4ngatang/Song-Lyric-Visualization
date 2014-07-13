@@ -10,7 +10,7 @@ def get_songs(page_number):
     soup = BeautifulSoup(html, "lxml")
     songs = soup.findAll('h1')
     list_section = []
-    for i in range(1,11):
+    for i in range(1,11): # kind of cheating, need to figure out how to filter out anchor tags (links on bottom of page)
         songz = songs[i].encode_contents().strip()
         list_section.append(songz)
     return list_section
@@ -19,8 +19,8 @@ if __name__ == '__main__':
     data = [] # a list to store the songs
 
     for i in range(10):
-        song = get_songs(str(i))
-        data.append(song)
+        songs = get_songs(str(i))
+        data += songs
         sleep(1)
     
     print data
